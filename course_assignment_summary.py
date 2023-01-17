@@ -29,9 +29,10 @@ offset_days = 15
 #
 #       reminder_dates - days from due date for reminder emails to be sent
 reminder_dates = [
-	[10], # day to email reminder
+	[[10], # day to email reminder
 	[14], # day to email final warning
-	[16] # day after deadline
+	[16]], # day after deadline
+	['5 days left', '1 day left', 'overdue']
 	]
 #
 #
@@ -260,12 +261,10 @@ for course in courses:
 			#cc_recipients = []
 			ws[col_grby+str(i)] = str(grade_by)	
 			ws[col_daysafter + str(i)] = str(days_after)
-			if (days_after in reminder_dates[0]) and assignment['needs_grading_count'] != 0 and is_working_day:
-				uob_utils.produce_email('5 days left', assignment, TSO_email, ws, col_sub, i)
-			elif (days_after in reminder_dates[1]) and assignment['needs_grading_count'] != 0 and is_working_day:
-				uob_utils.produce_email('1 day left', assignment, TSO_email, ws, col_sub, i)
-			elif days_after in reminder_dates[2] and is_working_day:
-				uob_utils.produce_email('overdue', assignment, TSO_email, ws, col_sub, i)
+			if assignment['needs_grading_count'] != 0 and is_working_day:
+				for i in range(len(reminder_dates[0])):
+					if (days_after in reminder_dates[0][i]):
+						uob_utils.produce_email(reminder_dates[1][i], assignment, TSO_email, ws, col_sub, i)
 		
 		if assignment['lock_at'] == None:
 			ws[col_lock+str(i)] = 'None set'
