@@ -165,7 +165,7 @@ def FindCorrespondingDate(date,ayear):
 
 def days_since_deadline(deadline): # returns number of days since submission deadline and the marking deadline
     DAYS_TO_MARK = 15
-    today = datetime.datetime.now() + datetime.timedelta(days = 8)
+    today = datetime.datetime.now()
     READABLE_CLOSED_DAYS = [
         [2022, 12, 19], [2022, 12, 20], [2022, 12, 21], [2022, 12, 22], [2022, 12, 23],
         [2022, 12, 26], [2022, 12, 27], [2022, 12, 28], [2022, 12, 29], [2022, 12, 30],
