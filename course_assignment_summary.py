@@ -262,9 +262,9 @@ for course in courses:
 			ws[col_grby+str(i)] = str(grade_by)	
 			ws[col_daysafter + str(i)] = str(days_after)
 			if assignment['needs_grading_count'] != 0 and is_working_day:
-				for i in range(len(reminder_dates[0])):
-					if (days_after in reminder_dates[0][i]):
-						uob_utils.produce_email(reminder_dates[1][i], assignment, TSO_email, ws, col_sub, i)
+				for j in range(len(reminder_dates[0])):
+					if (days_after in reminder_dates[0][j]):
+						uob_utils.produce_email(reminder_dates[1][j], assignment, TSO_email, ws, col_sub, i)
 		
 		if assignment['lock_at'] == None:
 			ws[col_lock+str(i)] = 'None set'
